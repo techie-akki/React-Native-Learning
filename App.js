@@ -1,17 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('Akki');
+  const [person,setPerson] = useState({name: 'Anonymous', age: 24});
+
+  const clickHandler = ()=> {
+    setName('hey Akki');
+    setPerson({name: 'Dhoni', age: 39});
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Helle, Newbie!</Text>
-      </View>
-      <View style={styles.body}>
-        <Text style={styles.boldText}>Welcome to <Text>React Native</Text> Tutorial.</Text>
-        <Text>Welcome to React Native Tutorial.</Text>
-        <Text>Welcome to React Native Tutorial.</Text>
+      <Text>My name is {name}</Text>
+      <Text>His name is {person.name} and his age is {person.age} </Text>
+      <View style={styles.button}>
+        <Button title = 'update state' onPress={clickHandler} />
       </View>
       <StatusBar style="auto" />
     </View>
@@ -25,16 +30,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  header:{
-    backgroundColor:'pink',
-    padding:20,
-  },
-  boldText:{
-    fontWeight:'bold',
-  },
-  body:{
-    margin:20,
-    backgroundColor:'yellow',
-    padding:20,
+  button:{
+    marginTop:20,
+
   }
 });
