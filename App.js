@@ -1,18 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
+  const [name,setName] = useState('Akki');
+  const [age,setAge] = useState('24');
+
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Helle, Newbie!</Text>
-      </View>
-      <View style={styles.body}>
-        <Text style={styles.boldText}>Welcome to <Text>React Native</Text> Tutorial.</Text>
-        <Text>Welcome to React Native Tutorial.</Text>
-        <Text>Welcome to React Native Tutorial.</Text>
-      </View>
+      <Text>Enter Name:</Text>
+      <TextInput
+        multiline 
+        style={styles.input}
+        placeholder='Enter your name'
+        onChangeText={(val)=> setName(val)}     
+     />
+     <Text>Enter Age:</Text>
+      <TextInput
+        keyboardType='numeric'
+        style={styles.input}
+        placeholder='Enter your age'
+        onChangeText={(val)=> setAge(val)}     
+     />
+
+      <Text>Name:{name}, Age:{age} </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -25,16 +37,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  header:{
-    backgroundColor:'pink',
-    padding:20,
-  },
-  boldText:{
-    fontWeight:'bold',
-  },
-  body:{
-    margin:20,
-    backgroundColor:'yellow',
-    padding:20,
+  input:{
+    borderWidth:1,
+    borderColor: 'tomato',
+    padding:8,
+    margin:10,
+    width:200,
   }
 });
