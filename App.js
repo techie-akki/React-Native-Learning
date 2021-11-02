@@ -1,38 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {name: 'Raj', key: '1'},
-    {name: 'Akki', key: '2'},
-    {name: 'Anjan', key: '3'},
-    {name: 'Vivek', key: '4'},
-    {name: 'Gurpreet', key: '5'},
-    {name: 'Hardik', key: '6'},
-    {name: 'Vineet', key: '7'},
-    {name: 'Divesh', key: '8'},
-    {name: 'Parth', key: '9'},
-    {name: 'Maharsh', key: '10'},
+    {name: 'Raaja', id: '1'},
+    {name: 'Akkii', id: '2'},
+    {name: 'Anjan', id: '3'},
+    {name: 'Vivek', id: '4'},
+    {name: 'Gurpit', id: '5'},
+    {name: 'Hardik', id: '6'},
+    {name: 'Vineet', id: '7'},
+    {name: 'Divesh', id: '8'},
+    {name: 'Parth', id: '9'},
+    {name: 'Mehar', id: '10'},
   ]);
   return (
     <View style={styles.container}>
+
+      <FlatList
+        numColumns={2}
+        keyExtractor={(item) => item.id}
+        data={people}
+        renderItem={({item})=>(
+          <Text style={styles.item}>{item.name}</Text>
+        )}
+      />
       
-      <ScrollView>
-        {/* {people.map((item)=>{
-          return(
-            <View  key={item.key}>
-              <Text style={styles.item}>{item.name}</Text>
-            </View>
-          );
-        })} refactoring below*/}
+      {/* <ScrollView>
         {people.map(item => (
           <View  key={item.key}>
             <Text style={styles.item}>{item.name}</Text>
-          </View>
-          
+          </View>  
         ))}
-      </ScrollView>
+      </ScrollView> */}
 
       <StatusBar style="auto" />
     </View>
@@ -44,12 +45,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingTop:40,
-    paddingHorizontal:20,
+    paddingHorizontal:20,  
   },
   item: {
     marginTop:25,
-    padding:20,
+    padding:30,
     backgroundColor:'tomato',
     fontSize:24,
+    marginHorizontal:12,    
   }
 });
